@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+</head>
+<body>
+	<script src="../lib/keysort.js"></script>
+	<script>
+		var arr = [
+			{
+				test : "100.2"
+			},
+			{
+				test : "100.1"
+			},
+			{
+				test : "2"
+			},
+			{
+				test : "2345"
+			},
+			{
+				test : "0"
+			}
+		];
+
+		keysort(arr, "test", "", true);
+
+		for(var i = 0, len = arr.length; i < len; i++){
+			console.log(arr[i].test);
+		}
+	</script>
+</body>
+</html>
