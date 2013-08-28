@@ -32,6 +32,27 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <p>Sorts an Array of Objects based on key values, like an SQL <code>ORDER BY</code></p>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">abc</span><span class="o">:</span> <span class="mi">123124</span><span class="p">,</span> <span class="nx">xyz</span><span class="o">:</span> <span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="nx">abc</span><span class="o">:</span> <span class="mi">123124</span><span class="p">,</span> <span class="nx">xyz</span><span class="o">:</span> <span class="mi">6</span><span class="p">},</span> <span class="p">{</span><span class="nx">abc</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">xyz</span><span class="o">:</span> <span class="mi">5</span><span class="p">}];</span>
+
+<span class="nx">keysort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s2">"abc"</span><span class="p">);</span> <span class="c1">// [{abc: 2, xyz: 5}, {abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}];</span>
+<span class="nx">keysort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s2">"abc, xyz desc"</span><span class="p">);</span> <span class="c1">// [{abc: 2, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 123124, xyz: 5}];</span>
+</pre></div>
+
+<h2>
+<a name="what-is-supported" class="anchor" href="#what-is-supported"><span class="octicon octicon-link"></span></a>What is Supported?</h2>
+
+<ul>
+<li>AMD loaders (require.js, cujo.js, etc.)</li>
+<li>node.js (npm install assure)</li>
+<li>script tag</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2013 Jason Mulligan<br>
+Licensed under the BSD-3 license.</p>
       </section>
     </div>
 
