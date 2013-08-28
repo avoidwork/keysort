@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><title>explode</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="explode"><meta name="groc-project-path" content="src/explode.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/explode.js</div></div><div id="document"><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method explode</span></p>
+
+<p>Splits a string on comma, or a parameter, and trims each value in the resulting Array</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>obj must be a String.</strong><br/>(String to capitalize)</p></li>
+<li><p><strong>arg must be a String.</strong><br/>(String to split on)</p></li>
+</ul>
+
+<p><strong>Returns an Array</strong><br/>(Array of the exploded String)</p></div></div><div class="code"><div class="wrapper"><span class="kd">function</span> <span class="nx">explode</span> <span class="p">(</span> <span class="nx">obj</span><span class="p">,</span> <span class="nx">arg</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">arg</span> <span class="o">=</span> <span class="nx">arg</span> <span class="o">||</span> <span class="s2">&quot;,&quot;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^(\s+|\t+)|(\s+|\t+)$/g</span><span class="p">,</span> <span class="s2">&quot;&quot;</span> <span class="p">).</span><span class="nx">split</span><span class="p">(</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span> <span class="s2">&quot;\\s*&quot;</span> <span class="o">+</span> <span class="nx">arg</span> <span class="o">+</span> <span class="s2">&quot;\\s*&quot;</span> <span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span></div></div></div></div></body></html>

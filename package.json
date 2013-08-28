@@ -1,0 +1,48 @@
+{
+  "name": "keysort",
+  "description": "Sorts an Array of Objects with SQL ORDER BY clause",
+  "version": "0.1.0",
+  "homepage": "http://avoidwork.github.io/keysort/",
+  "author": {
+    "name": "Jason Mulligan",
+    "email": "jason.mulligan@avoidwork.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/avoidwork/keysort.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avoidwork/keysort/issues"
+  },
+  "licenses": [
+    {
+      "type": "BSD-3",
+      "url": "https://raw.github.com/avoidwork/keysort/master/LICENSE"
+    }
+  ],
+  "main": "lib/keysort",
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.6",
+    "grunt-exec": "~0.4",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-jshint": "~0.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.2"
+  },
+  "keywords": [
+    "Array",
+    "Object",
+    "sort",
+    "keys",
+    "SQL",
+    "WHERE"
+  ]
+}

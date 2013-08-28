@@ -1,0 +1,11 @@
+/doc/
+/node_modules/
+/lib/key.min.js
+/lib/key.map
+/test/
+/src/
+.git
+.gitignore
+.jshintrc
+.travis.yml
+Gruntfile.js
