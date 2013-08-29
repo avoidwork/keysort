@@ -8,7 +8,7 @@
  * @return {Array}        Sorted Array
  */
 function sort ( obj, query, sub ) {
-	query       = query.replace( /\s*asc/g, "" ).replace( /\s*desc/ig, " desc" );
+	query       = query.replace( /\s*asc/ig, "" ).replace( /\s*desc/ig, " desc" );
 	var queries = explode( query ).map( function ( i ) { return i.split( " " ); }),
 	    sorts   = [];
 
