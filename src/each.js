@@ -10,9 +10,9 @@
  */
 function each ( obj, fn ) {
 	var nth = obj.length,
-	    i;
+	    i   = -1;
 
-	for ( i = 0; i < nth; i++ ) {
+	while ( ++i < nth ) {
 		if ( fn.call( obj, obj[i], i ) === false ) {
 			break;
 		}

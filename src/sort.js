@@ -9,7 +9,7 @@
  */
 function sort ( obj, query, sub ) {
 	query       = query.replace( /\s*asc/ig, "" ).replace( /\s*desc/ig, " desc" );
-	var queries = explode( query ).map( function ( i ) { return i.split( " " ); }),
+	var queries = explode( query ).map( function ( i ) { return i.split( " " ); } ),
 	    sorts   = [];
 
 	if ( sub && sub !== "" ) {
@@ -20,19 +20,36 @@ function sort ( obj, query, sub ) {
 	}
 
 	each( queries, function ( i ) {
-		var desc = i[1] === "desc";
+		var s = ".",
+		    e = "";
 
-		if ( !desc ) {
-			sorts.push( "if ( a" + sub + "[\"" + i[0] + "\"] < b" + sub + "[\"" + i[0] + "\"] ) return -1;" );
-			sorts.push( "if ( a" + sub + "[\"" + i[0] + "\"] > b" + sub + "[\"" + i[0] + "\"] ) return 1;" );
+		if ( notDot.test( i[0] ) ) {
+			s = braceS;
+			e = braceE;
+		}
+
+		sorts.push( "try {" );
+
+		if ( i[1] === "desc" ) {
+			sorts.push( "if ( a" + sub + s + i[0] + e + " < b" + sub + s + i[0] + e + " ) return 1;" );
+			sorts.push( "if ( a" + sub + s + i[0] + e + " > b" + sub + s + i[0] + e + " ) return -1;" );
 		}
 		else {
-			sorts.push( "if ( a" + sub + "[\"" + i[0] + "\"] < b" + sub + "[\"" + i[0] + "\"] ) return 1;" );
-			sorts.push( "if ( a" + sub + "[\"" + i[0] + "\"] > b" + sub + "[\"" + i[0] + "\"] ) return -1;" );
+			sorts.push( "if ( a" + sub + s + i[0] + e + " < b" + sub + s + i[0] + e + " ) return -1;" );
+			sorts.push( "if ( a" + sub + s + i[0] + e + " > b" + sub + s + i[0] + e + " ) return 1;" );
 		}
-	});
 
-	sorts.push( "else return 0;" );
+		sorts.push( "} catch (e) {" );
+		sorts.push( "try {" );
+		sorts.push( "if ( a" + sub + s + i[0] + e + " !== undefined ) return " + ( i[1] === "desc" ? "-1" : "1") + ";" );
+		sorts.push( "} catch (e) {}" );
+		sorts.push( "try {" );
+		sorts.push( "if ( b" + sub + s + i[0] + e + " !== undefined ) return " + ( i[1] === "desc" ? "1" : "-1") + ";" );
+		sorts.push( "} catch (e) {}" );
+		sorts.push( "}" );
+	} );
+
+	sorts.push( "return 0;" );
 
 	return obj.sort( new Function( "a", "b", sorts.join( "\n" ) ) );
 }
