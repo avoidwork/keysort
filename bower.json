@@ -1,0 +1,30 @@
+{
+  "name": "keysort",
+  "description": "Sorts an Array of Objects with SQL ORDER BY clause",
+  "main": "lib/keysort",
+  "authors": [
+    "Jason Mulligan <jason.mulligan@avoidwork.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Array",
+    "Object",
+    "sort",
+    "keys",
+    "SQL",
+    "WHERE"
+  ],
+  "homepage": "https://github.com/avoidwork/keysort",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
