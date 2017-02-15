@@ -7,10 +7,10 @@ Sorts an Array of Objects based on key values, like an SQL `ORDER BY`
 **Example**
 
 ```javascript
-var arr = [{abc: 123124, xyz: 5}, {abc: 123125, xyz: 6}, {abc: 2, xyz: 5}];
+var arr = [{abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 2, xyz: 5}];
 
-keysort(arr, "abc, xyz"); // [{abc: 2, xyz: 5}, {abc: 123124, xyz: 5}, {abc: 123125, xyz: 6}];
-keysort(arr, "abc, xyz desc"); // [{abc: 2, xyz: 5}, {abc: 123125, xyz: 6}, {abc: 123124, xyz: 5}];
+keysort(arr, "abc, xyz"); // [{abc: 2, xyz: 5}, {abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}];
+keysort(arr, "abc, xyz desc"); // [{abc: 2, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 123124, xyz: 5}];
 ```
 
 ## What is Supported?
