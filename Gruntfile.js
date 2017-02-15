@@ -3,16 +3,14 @@ module.exports = function (grunt) {
 		pkg : grunt.file.readJSON("package.json"),
 		concat : {
 			options : {
-				banner : "/**\n" + 
-				         " * <%= pkg.name %>\n" +
-				         " *\n" +
-				         " * @author <%= pkg.author.name %> <<%= pkg.author.email %>>\n" +
-				         " * @copyright <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>\n" +
-				         " * @license <%= pkg.licenses[0].type %> <<%= pkg.licenses[0].url %>>\n" +
-				         " * @link <%= pkg.homepage %>\n" +
-				         " * @module <%= pkg.name %>\n" +
-				         " * @version <%= pkg.version %>\n" +
-				         " */\n"
+				banner : "/**\n" +
+				" * <%= pkg.description %>\n" +
+				" *\n" +
+				" * @author <%= pkg.author %>\n" +
+				" * @copyright <%= grunt.template.today('yyyy') %>\n" +
+				" * @license <%= pkg.license %>\n" +
+				" * @version <%= pkg.version %>\n" +
+				" */\n"
 			},
 			dist : {
 				src : [
@@ -22,25 +20,41 @@ module.exports = function (grunt) {
 					"src/sort.js",
 					"src/outro.js"
 				],
-				dest : "lib/<%= pkg.name %>.js"
+				dest : "lib/<%= pkg.name %>.es6.js"
 			}
 		},
-		exec : {
-			closure : {
-				cmd : "cd lib\nclosure-compiler --js <%= pkg.name %>.js --js_output_file <%= pkg.name %>.min.js --create_source_map ./<%= pkg.name %>.map"
+		babel: {
+			options: {
+				sourceMap: false,
+				presets: ["babel-preset-es2015"]
 			},
-			sourcemap : {
-				cmd : "echo //@ sourceMappingURL=<%= pkg.name %>.map >> lib/<%= pkg.name %>.min.js"
+			dist: {
+				files: {
+					"lib/<%= pkg.name %>.js": "lib/<%= pkg.name %>.es6.js"
+				}
 			}
 		},
-		jshint : {
-			options : {
-				jshintrc : ".jshintrc"
-			},
-			src : "lib/<%= pkg.name %>.js"
+		eslint: {
+			target: [
+				"index.js",
+				"lib/<%= pkg.name %>.es6.js",
+				"test/*.js"
+			]
 		},
 		nodeunit : {
 			all : ["test/*.js"]
+		},
+		uglify: {
+			options: {
+				banner: '/* <%= grunt.template.today("yyyy") %> <%= pkg.author %> */\n',
+				sourceMap: true,
+				sourceMapIncludeSources: true
+			},
+			target: {
+				files: {
+					"lib/<%= pkg.name %>.min.js" : ["lib/<%= pkg.name %>.js"]
+				}
+			}
 		},
 		watch : {
 			js : {
@@ -55,14 +69,16 @@ module.exports = function (grunt) {
 	});
 
 	// tasks
-	grunt.loadNpmTasks("grunt-exec");
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-nodeunit");
-	grunt.loadNpmTasks("grunt-contrib-jshint");
+	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks("grunt-contrib-uglify");
+	grunt.loadNpmTasks("grunt-babel");
+	grunt.loadNpmTasks("grunt-eslint");
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// aliases
-	grunt.registerTask("test", ["nodeunit", "jshint"]);
-	grunt.registerTask("build", ["concat", "exec"]);
+	grunt.registerTask("test", ["eslint", "nodeunit"]);
+	grunt.registerTask("build", ["concat", "babel", "uglify"]);
 	grunt.registerTask("default", ["build", "test"]);
 };

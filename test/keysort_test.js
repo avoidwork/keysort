@@ -1,8 +1,8 @@
-var keysort   = require("../lib/keysort.js"),
-    arr       = [{abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 2, xyz: 5}],
-    arrNested = [{data:{abc: 123124, xyz: 5}}, {data:{abc: 123124, xyz: 6}}, {data:{abc: 2, xyz: 5}}];
+var keysort = require("../index.js"),
+	arr = [{abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 2, xyz: 5}],
+	arrNested = [{data: {abc: 123124, xyz: 5}}, {data: {abc: 123124, xyz: 6}}, {data: {abc: 2, xyz: 5}}];
 
-exports["one"] = {
+exports.one = {
 	setUp: function (done) {
 		this.arr = keysort(arr.slice(), "abc");
 		done();
@@ -14,7 +14,7 @@ exports["one"] = {
 	}
 };
 
-exports["two"] = {
+exports.two = {
 	setUp: function (done) {
 		this.arr = keysort(arr.slice(), "abc, xyz desc");
 		done();
@@ -28,7 +28,7 @@ exports["two"] = {
 	}
 };
 
-exports["oneNested"] = {
+exports.oneNested = {
 	setUp: function (done) {
 		this.arr = keysort(arrNested.slice(), "abc", "data");
 		done();
@@ -40,7 +40,7 @@ exports["oneNested"] = {
 	}
 };
 
-exports["twoNested"] = {
+exports.twoNested = {
 	setUp: function (done) {
 		this.arr = keysort(arrNested.slice(), "abc, xyz desc", "data");
 		done();

@@ -1,6 +1,4 @@
-(function ( global ) {
-"use strict";
-
-var notDot = /-|\s/,
-    braceS = "[\"",
-    braceE = "\"]";
+(function (global) {
+	const notDot = /-|\s/,
+		braceS = "[\"",
+		braceE = "\"]";
