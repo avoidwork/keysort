@@ -11,7 +11,7 @@
 		const queries = explode(query.replace(/\s*asc/ig, "").replace(/\s*desc/ig, " desc")).map(i => i.split(" ")),
 			sorts = [];
 
-		if (sub && sub !== "") {
+		if (sub) {
 			sub = "." + sub;
 		}
 
