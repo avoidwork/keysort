@@ -8,4 +8,4 @@
 	} else {
 		global.keysort = sort;
 	}
-}(this));
+}(typeof window !== "undefined" ? window : global));
