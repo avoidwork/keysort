@@ -32,7 +32,7 @@
     "mocha": "mocha test/*.js",
     "rollup": "rollup --config",
     "test": "npm run lint && npm run mocha",
-    "test-webpack": "rm -rf test/webpack && git clone git@github.com:rabelais88/typescript-webpack.git test/webpack && echo \"import { lru } from 'tiny-lru';console.log(lru(1));\" >> test/webpack/src/index.ts && cd test/webpack && npm install && mkdir -p node_modules/tiny-lru/dist && cp ../../package.json node_modules/tiny-lru/ && cp ../../dist/* node_modules/tiny-lru/dist/ && npm run build",
+    "test-webpack": "rm -rf test/webpack && git clone git@github.com:rabelais88/typescript-webpack.git test/webpack && echo \"import { keysort } from 'keysort';console.log(keysort([{a: true}, {a: false}], 'a asc'));\" >> test/webpack/src/index.ts && cd test/webpack && npm install && mkdir -p node_modules/keysort/dist && cp ../../package.json node_modules/keysort/ && cp ../../dist/* node_modules/keysort/dist/ && npm run build",
     "types": "npx -p typescript tsc src/*.js --declaration --allowJs --emitDeclarationOnly --outDir types"
   },
   "dependencies": {},
