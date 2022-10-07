@@ -1,7 +1,7 @@
 {
   "name": "keysort",
   "description": "Sorts an Array of Objects with SQL ORDER BY clause",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "http://avoidwork.github.io/keysort/",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
@@ -26,7 +26,6 @@
   },
   "scripts": {
     "build": "npm run lint && rm -rf dist/* && npm run rollup && npm run mocha",
-    "benchmark": "node benchmark.js",
     "changelog": "auto-changelog -p",
     "lint": "eslint *.js src/*.js test/*.js",
     "mocha": "mocha test/*.js",
