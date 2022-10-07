@@ -9,7 +9,9 @@ function explode (obj, arg = ",") {
 	return obj.replace(/^(\s+|\t+)|(\s+|\t+)$/g, "").split(new RegExp("\\s*" + arg + "\\s*"));
 }const notDot = /-|\s/;
 const braceS = "[\"";
-const braceE = "\"]";function keysort (obj, query, sub = "") {
+const braceE = "\"]";const nu = " !== undefined";
+
+function keysort (obj, query, sub = "") {
 	const queries = explode(query.replace(/\s*asc/ig, "").replace(/\s*desc/ig, " desc")).map(i => i.split(" ")),
 		sorts = [];
 
@@ -18,9 +20,8 @@ const braceE = "\"]";function keysort (obj, query, sub = "") {
 	}
 
 	for (const [a, b] of queries) {
-		const desc = b === "desc",
-			y = desc ? 1 : -1,
-			x = desc ? -1 : 1;
+		const y = b === "desc" ? 1 : -1,
+			x = -y;
 
 		let s = ".",
 			e = "";
@@ -30,12 +31,12 @@ const braceE = "\"]";function keysort (obj, query, sub = "") {
 			e = braceE;
 		}
 
-		sorts.push("if (a" + sub + s + a + e + " !== undefined && b" + sub + s + a + e + " !== undefined) {");
-		sorts.push("  if (a" + sub + s + a + e + " < b" + sub + s + a + e + ") return " + y + ";");
-		sorts.push("  if (a" + sub + s + a + e + " > b" + sub + s + a + e + ") return " + x + ";");
+		sorts.push(`if (a${sub}${s}${a}${e}${nu} && b${sub}${s}${a}${e}${nu}) {`);
+		sorts.push(`  if (a${sub}${s}${a}${e} < b${sub}${s}${a}${e}) return ${y};`);
+		sorts.push(`  if (a${sub}${s}${a}${e} > b${sub}${s}${a}${e}) return ${x};`);
 		sorts.push("} else {");
-		sorts.push("  if (a" + sub + s + a + e + " !== undefined) return " + y + ";");
-		sorts.push("  if (b" + sub + s + a + e + " !== undefined) return " + x + ";");
+		sorts.push(`  if (a${sub}${s}${a}${e}${nu}) return ${y};`);
+		sorts.push(`  if (b${sub}${s}${a}${e}${nu}) return ${x};`);
 		sorts.push("}");
 	}
 
