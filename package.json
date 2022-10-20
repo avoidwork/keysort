@@ -1,7 +1,7 @@
 {
   "name": "keysort",
   "description": "Sorts an Array of Objects with SQL ORDER BY clause",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "homepage": "http://avoidwork.github.io/keysort/",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
