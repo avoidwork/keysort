@@ -1,3 +1,3 @@
-export const notDot: RegExp;
-export const braceS: "[\"";
-export const braceE: "\"]";
+export const NOT_DOT: RegExp;
+export const BRACE_START: "[\"";
+export const BRACE_END: "\"]";

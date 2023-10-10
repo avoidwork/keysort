@@ -1,1 +1,1 @@
-export function keysort(obj: any, query: any, sub?: string): any;
+export function keysort(obj?: any[], query?: string, toSorted?: boolean): any;
