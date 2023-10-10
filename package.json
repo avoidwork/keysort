@@ -1,8 +1,8 @@
 {
   "name": "keysort",
   "description": "Sorts an Array of Objects with SQL ORDER BY clause syntax",
-  "version": "3.0.0",
-  "homepage": "http://avoidwork.github.io/keysort/",
+  "version": "3.0.1",
+  "homepage": "https://github.com/avoidwork/keysort",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
     "type": "git",
@@ -35,7 +35,6 @@
     "lint": "eslint *.js src/*.js test/*.js",
     "mocha": "nyc mocha test/*.js",
     "rollup": "rollup --config",
-    "sample": "node sample.js",
     "test": "npm run lint && npm run mocha",
     "types": "npx -p typescript tsc src/keysort.js --declaration --allowJs --emitDeclarationOnly --outDir types",
     "prepare": "husky install"
