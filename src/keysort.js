@@ -1,34 +1,33 @@
 import {explode} from "./explode.js";
-import {notDot, braceS, braceE} from "./regex.js";
+import {BRACE_END, BRACE_START, NOT_DOT} from "./regex.js";
+import {DESC, EMPTY, NOT_UNDEFINED, PERIOD, SPACE, SPACE_DESC} from "./constants.js";
 
-const nu = " !== undefined";
-
-export function keysort (obj, query) {
-	const queries = explode(query.replace(/\s*asc/ig, "").replace(/\s*desc/ig, " desc")).map(i => i.split(" ")),
+export function keysort (obj = [], query = "", toSorted = false) {
+	const queries = explode(query.replace(/\s*asc/ig, EMPTY).replace(/\s*desc/ig, SPACE_DESC)).map(i => i.split(SPACE)),
 		sorts = [];
 
 	for (const [a, b] of queries) {
-		const y = b === "desc" ? 1 : -1,
+		const y = b === DESC ? 1 : -1,
 			x = -y;
 
-		let s = ".",
-			e = "";
+		let s = PERIOD,
+			e = EMPTY;
 
-		if (notDot.test(a)) {
-			s = braceS;
-			e = braceE;
+		if (NOT_DOT.test(a)) {
+			s = BRACE_START;
+			e = BRACE_END;
 		}
 
-		sorts.push(`if (a${s}${a}${e}${nu} && b${s}${a}${e}${nu}) {`);
+		sorts.push(`if (a${s}${a}${e}${NOT_UNDEFINED} && b${s}${a}${e}${NOT_UNDEFINED}) {`);
 		sorts.push(`  if (a${s}${a}${e} < b${s}${a}${e}) return ${y};`);
 		sorts.push(`  if (a${s}${a}${e} > b${s}${a}${e}) return ${x};`);
 		sorts.push("} else {");
-		sorts.push(`  if (a${s}${a}${e}${nu}) return ${y};`);
-		sorts.push(`  if (b${s}${a}${e}${nu}) return ${x};`);
+		sorts.push(`  if (a${s}${a}${e}${NOT_UNDEFINED}) return ${y};`);
+		sorts.push(`  if (b${s}${a}${e}${NOT_UNDEFINED}) return ${x};`);
 		sorts.push("}");
 	}
 
 	sorts.push("return 0;");
 
-	return obj.sort(new Function("a", "b", sorts.join("\n")));
+	return obj[toSorted ? "toSorted" : "sort"](new Function("a", "b", sorts.join("\n")));
 }

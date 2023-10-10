@@ -1,3 +1,3 @@
-export const notDot = /-|\s/;
-export const braceS = "[\"";
-export const braceE = "\"]";
+export const NOT_DOT = /-|\s/;
+export const BRACE_START = "[\"";
+export const BRACE_END = "\"]";

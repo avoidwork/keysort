@@ -5,24 +5,16 @@
  * @license BSD-3-Clause
  * @version 3.0.0
  */
-'use strict';
-
-function explode (obj, arg = ",") {
+(function(g,f){typeof exports==='object'&&typeof module!=='undefined'?f(exports):typeof define==='function'&&define.amd?define(['exports'],f):(g=typeof globalThis!=='undefined'?globalThis:g||self,f(g.lru={}));})(this,(function(exports){'use strict';function explode (obj, arg = ",") {
 	return obj.trim().split(new RegExp(`\\s*${arg}\\s*`));
-}
-
-const NOT_DOT = /-|\s/;
+}const NOT_DOT = /-|\s/;
 const BRACE_START = "[\"";
-const BRACE_END = "\"]";
-
-const DESC = "desc";
+const BRACE_END = "\"]";const DESC = "desc";
 const EMPTY = "";
 const NOT_UNDEFINED = " !== undefined";
 const PERIOD = ".";
 const SPACE = " ";
-const SPACE_DESC = " desc";
-
-function keysort (obj = [], query = "", toSorted = false) {
+const SPACE_DESC = " desc";function keysort (obj = [], query = "", toSorted = false) {
 	const queries = explode(query.replace(/\s*asc/ig, EMPTY).replace(/\s*desc/ig, SPACE_DESC)).map(i => i.split(SPACE)),
 		sorts = [];
 
@@ -50,6 +42,4 @@ function keysort (obj = [], query = "", toSorted = false) {
 	sorts.push("return 0;");
 
 	return obj[toSorted ? "toSorted" : "sort"](new Function("a", "b", sorts.join("\n")));
-}
-
-exports.keysort = keysort;
+}exports.keysort=keysort;}));

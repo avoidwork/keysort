@@ -1,6 +1,7 @@
-import pkg from "./package.json";
-
-const {terser} = require("rollup-plugin-terser");
+import terser from "@rollup/plugin-terser";
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+const pkg = require("./package.json");
 const year = new Date().getFullYear();
 const bannerLong = `/**
  * ${pkg.name}
@@ -30,22 +31,22 @@ export default [
 			},
 			{
 				...esmOutBase,
-				file: `dist/${pkg.name}.esm.js`
+				file: `dist/${pkg.name}.js`
 			},
 			{
 				...esmOutBase,
 				...minOutBase,
-				file: `dist/${pkg.name}.esm.min.js`
+				file: `dist/${pkg.name}.min.js`
 			},
 			{
 				...umdOutBase,
-				file: `dist/${pkg.name}.js`,
+				file: `dist/${pkg.name}.umd.js`,
 				name: "lru"
 			},
 			{
 				...umdOutBase,
 				...minOutBase,
-				file: `dist/${pkg.name}.min.js`,
+				file: `dist/${pkg.name}.umd.min.js`,
 				name: "lru"
 			}
 		]

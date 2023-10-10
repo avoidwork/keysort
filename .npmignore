@@ -1,6 +1,10 @@
-/node_modules/
-/test/
-/src/
+.DS_Store
+.husky/
+.github/
+.nyc-output/
+test/
+src/
 .git
 .gitignore
 .eslintrc
+rollup.config.js
