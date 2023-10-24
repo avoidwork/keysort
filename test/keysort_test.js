@@ -16,13 +16,15 @@ describe("Testing functionality", function () {
 		assert.strictEqual(arr[0]["ab-c"], 2, "Should be '2'");
 	});
 
-	it("Sort one (toSorted)", function () {
-		const arr = [{abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 2, xyz: 5}];
+	if (typeof Array.toSorted === "function") {
+		it("Sort one (toSorted)", function () {
+			const arr = [{abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 2, xyz: 5}];
 
-		const sortedArr = keysort(arr, "abc", true);
-		assert.strictEqual(arr[0].abc, 123124, "Should be '123124'");
-		assert.strictEqual(sortedArr[0].abc, 2, "Should be '2'");
-	});
+			const sortedArr = keysort(arr, "abc", true);
+			assert.strictEqual(arr[0].abc, 123124, "Should be '123124'");
+			assert.strictEqual(sortedArr[0].abc, 2, "Should be '2'");
+		});
+	}
 
 	it("Sort two", function () {
 		const arr = [{abc: 123124, xyz: 5}, {abc: 123124, xyz: 6}, {abc: 2, xyz: 5}];
@@ -74,11 +76,13 @@ describe("Testing functionality", function () {
 		assert.strictEqual(arrNested[2].data.xyz, 5, "Should be '5'");
 	});
 
-	it("Sort two nested (bracket and period, toSorted)", function () {
-		const arrNested = [{data: {abc: 123124, xyz: 6}}, {data: {abc: 123124, xyz: 5}}, {data: {abc: 2, xyz: 5}}];
+	if (typeof Array.toSorted === "function") {
+		it("Sort two nested (bracket and period, toSorted)", function () {
+			const arrNested = [{data: {abc: 123124, xyz: 6}}, {data: {abc: 123124, xyz: 5}}, {data: {abc: 2, xyz: 5}}];
 
-		const sortedArr = keysort(arrNested, "data['abc'], data.xyz desc", true);
-		assert.strictEqual(arrNested[0].data.abc, 123124, "Should be '123124'");
-		assert.strictEqual(sortedArr[0].data.abc, 2, "Should be '2'");
-	});
+			const sortedArr = keysort(arrNested, "data['abc'], data.xyz desc", true);
+			assert.strictEqual(arrNested[0].data.abc, 123124, "Should be '123124'");
+			assert.strictEqual(sortedArr[0].data.abc, 2, "Should be '2'");
+		});
+	}
 });
