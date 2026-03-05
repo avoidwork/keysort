@@ -41,7 +41,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-terser": "^1.0.0",
     "auto-changelog": "^2.4.0",
     "eslint": "^8.51.0",
     "husky": "^9.0.1",
